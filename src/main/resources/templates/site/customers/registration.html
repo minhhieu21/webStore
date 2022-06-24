@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>REGISTRATION</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Link icon -->
+    <link rel="shortcut icon" href="/images/icon1.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- link css -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 form-container">
+                <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+                    <div class="logo text-center">
+                        <img src="/images/logo.png" class="img-fluid w-50">
+                    </div>
+                    <div class="heading mb-3">
+                        <h4>CREATE NEW AN ACCOUNT</h4>
+                    </div>
+                    <form th:action="@{/register}" method="post" th:object="${customer}">
+                        <div class="form-input">
+                            <span><i class="fa fa-user"></i></span>
+                            <input type="text" name="name" id="name" th:field="*{name}" placeholder="Full Name" required>
+                            <small th:if="${#fields.hasErrors('name')}" id="customerHelpId" class="form-text text-muted">Fullname invalid</small>
+                        </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <input type="email" name="email" id="email" th:field="*{email}" placeholder="Email Address" required>
+                            <small th:if="${#fields.hasErrors('email')}" id="customerHelpId" class="form-text text-muted">Email invalid !</small>
+                        </div>
+                        <div class="form-input">
+                            <span><i class="fa fa-lock"></i></span>
+                            <input type="password" name="password" id="password" th:field="*{password}" placeholder="Password" required>
+                            <small th:if="${#fields.hasErrors('password')}" id="customerHelpId" class="form-text text-muted">Password invalid</small>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 d-flex">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="cb1">
+                                    <label class="custom-control-label text-white" for="cb1">I agree all terms & conditions</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left mb-3 text-center">
+                            <button type="submit" class="btn">Register</button>
+                        </div>
+                        <div class="text-white mb-3">or register with</div>
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <a href="" class="btn btn-block btn-social btn-facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="" class="btn btn-block btn-social btn-google">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                            </div>
+                            <div class="col-4">
+                                <a href="" class="btn btn-block btn-social btn-twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-white">Already have an account?
+                            <a th:href="@{/slogin}" class="login-link">Login here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

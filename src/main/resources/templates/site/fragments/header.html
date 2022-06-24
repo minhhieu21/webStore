@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+
+</head>
+
+<body>
+    <div th:fragment="header">
+        <!-- Navbar  -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+            <div class="container">
+                <a class="navbar-brand" href="#">INFINITY SNEAKER SHOP</a>
+                <!-- Thu nhỏ sẽ hiển thị ra nút nhấn -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="mx-auto">
+                        <ul class="navbar-nav">
+                            <form class="form-inline">
+                                <!-- Actual search box -->
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" class="form-control" placeholder="Search Products">
+                                </div>
+                            </form>
+                        </ul>
+                    </div>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item float-right">
+                            <a class="nav-link text-light" href="#"><span class="fa fa-shopping-cart"></span>
+                                <span class="text">Cart</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#"><span class="fa fa-user-o"></span>
+                                <span class="text">Profile</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Banner Image -->
+        <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+            <div class="content text-center">
+                <h1 class="text-white">INFINITY SNEAKER SHOP</h1>
+            </div>
+        </div>
+
+        <style>
+            .banner-image {
+                background-image: url('/images/BG.png');
+                background-size: cover;
+                margin: 0;
+                height: 100vh;
+            }
+            
+            .fa-search {
+                font-size: 20px;
+                padding: 10px;
+                margin-bottom: 3px;
+                padding-right: 20px;
+            }
+            /* Bootstrap 4 text input with search icon */
+            
+            .has-search .form-control {
+                padding-left: 2.375rem;
+            }
+            
+            .has-search .form-control-feedback {
+                position: absolute;
+                display: block;
+                text-align: center;
+                pointer-events: none;
+                color: #aaa;
+            }
+        </style>
+
+        <script type="text/javascript ">
+            var nav = document.querySelector('nav');
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 100) {
+                    nav.classList.add('bg-dark', 'shadow');
+                } else {
+                    nav.classList.remove('bg-dark', 'shadow');
+                }
+            });
+        </script>
+
+    </div>
+
+</body>
+
+</html>

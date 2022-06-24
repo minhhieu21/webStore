@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center mt-3"> <button class="btn btn-outline-info">OUR CATEGORIES</button> </div>
+            <div class="d-flex justify-content-center mt-3 pb-3"> <span class="text text-center">Finding Best Products Now in Your Fingertips</span> </div>
+            <div class="row mt-2 g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="card p-1 mb-3">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>NIKE</span></div>
+                            <div>
+                                <a href=""><img src="/images/bg2.jpg" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>ADIDAS</span> </div>
+                            <div>
+                                <a href=""><img src="/images/anh-giay-adidas.jpg" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>PUMA</span> </div>
+                            <div>
+                                <a href=""><img src="/images/puma.jpg" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>CONVERSE</span> </div>
+                            <div>
+                                <a href=""><img src="/images/converse.jpg" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>VANS</span> </div>
+                            <div>
+                                <a href=""> <img src="/images/vans.jpg" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>FILA</span> </div>
+                            <div>
+                                <a href=""><img src="/images/fila.jpg" height="100" width="100" /> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-1">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"><span>BITIS</span> </div>
+                            <div>
+                                <a href=""> <img src="/images/bitis.jpg" height="100" width="100" /> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-">
+                        <div class="d-flex justify-content-between align-items-center p-2">
+                            <div class="flex-column lh-1 imagename"> <span>NEW BALANCE</span> </div>
+                            <div>
+                                <a href=""><img src="/images/newbalance.png" height="100" width="100" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-center align-items-center mt-3"> <button class="btn btn-outline-info">ALL PRODUCTS</button> </div>
+            <div class="d-flex justify-content-center mt-3 pb-3"> <span class="text text-center">Finding Best Products Now in Your Fingertips</span> </div>
+
+
+            <div class="container d-flex justify-content-center mt-3">
+                <div class="row">
+                    <div class="col-md-3" th:each="product : ${products}">
+                        <div class="product-wrapper mb-45 text-center">
+                            <div class="product-img">
+                                <a href="#" data-abc="true"> <img th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" class="img-fluid w-auto" alt=""> </a>
+                                <div class="product-action">
+                                    <div class="product-action-style">
+                                        <a href="#"> <i class="fa fa-plus"></i> </a>
+                                        <a href="#"> <i class="fa fa-heart"></i> </a>
+                                        <a href="#"> <i class="fa fa-shopping-cart"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="product-wrapper mb-45 text-center">
+                            <div class="product-img">
+                                <a href="#" data-abc="true"> <img src="https://i.imgur.com/lAQxXCK.jpg" alt=""> </a>
+                                <div class="product-action">
+                                    <div class="product-action-style">
+                                        <a class="action-plus" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#" data-abc="true"> <i class="fa fa-plus"></i> </a>
+                                        <a class="action-heart" title="Wishlist" href="#" data-abc="true"> <i class="fa fa-heart"></i> </a>
+                                        <a class="action-cart" title="Add To Cart" href="#" data-abc="true"> <i class="fa fa-shopping-cart"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="product-wrapper mb-45 text-center">
+                            <div class="product-img">
+                                <a href="#" data-abc="true"> <img src="https://i.imgur.com/HxEEu5g.jpg" alt=""> </a>
+                                <div class="product-action">
+                                    <div class="product-action-style">
+                                        <a class="action-plus" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#" data-abc="true"> <i class="fa fa-plus"></i> </a>
+                                        <a class="action-heart" title="Wishlist" href="#" data-abc="true"> <i class="fa fa-heart"></i> </a>
+                                        <a class="action-cart" title="Add To Cart" href="#" data-abc="true"> <i class="fa fa-shopping-cart"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="product-wrapper mb-45 text-center">
+                            <div class="product-img">
+                                <a href="#" data-abc="true"> <img src="https://i.imgur.com/lAQxXCK.jpg" alt=""> </a>
+                                <div class="product-action">
+                                    <div class="product-action-style">
+                                        <a class="action-plus" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#" data-abc="true"> <i class="fa fa-plus"></i> </a>
+                                        <a class="action-heart" title="Wishlist" href="#" data-abc="true"> <i class="fa fa-heart"></i> </a>
+                                        <a class="action-cart" title="Add To Cart" href="#" data-abc="true"> <i class="fa fa-shopping-cart"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Main Content Area -->
+        <!-- <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card"> <img src="https://i.imgur.com/2ldaKjy.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden chairs set-2</span> <span class="font-weight-bold">$150</span> </div>
+                        <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+
+</body>
+
+</html>

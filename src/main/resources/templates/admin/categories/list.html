@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head></head>
+
+<body>
+    <section class="form mt-3 my-4" layout:fragment="content">
+        <div class="head pb-5 ">
+            <div class="container py-5 ">
+                <div class="card">
+                    <div class="col">
+                        <div class="col mt-2">
+                            <h2 class="font-weight-light text-center py-2">CATEGORY MANAGERMENTS</h2>
+
+                            <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                                <i>[[${message}]]</i>
+                            </div>
+
+                            <div class="float-right pb-2">
+                                <a class="btn btn-outline-success ml-2" th:href="@{/admin/categories/add}">Add new Category</a>
+                            </div>
+
+                            <table class="table table-strip">
+                                <thead>
+                                    <tr>
+                                        <td>Category ID</td>
+                                        <td>Name category</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="category : ${categories}">
+                                        <td scope="row">[[${category.categoryId}]]</td>
+                                        <td th:text="*{category.name}"></td>
+                                        <td>
+                                            <a th:href="@{'/admin/categories/view/' + ${category.categoryId}}" class="btn btn-outline-info"><i class="fa fa-edit" aria-hidden="true"></i>View</a>
+                                            <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning"><i class="fa fa-trash" aria-hidden="true"></i>Edit </a>
+                                            <a th:data-id="${category.categoryId}" th:data-name="${category.name}" onclick="showConfirmModalDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))" class="btn btn-outline-danger ">
+                                                <i class="fa fa-trash "></i>Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <script>
+                                function showConfirmModalDialog(id, name) {
+                                    $('#categoryName').text(name);
+                                    $('#yesOption').attr('href', '/admin/categories/delete/' + id);
+                                    $('#confirmationId').modal('show');
+                                }
+                            </script>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Do you want to delete "<span id="categoryName"></span> " ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a id="yesOption" type="button" class="btn btn-warning">Yes</a>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-footer text-muted text-center">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                * {
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+                
+                .head {
+                    background-image: url('/images/bg2.jpg');
+                    background-size: 100% 100%;
+                    border-radius: 5px;
+                }
+                
+                .row1 {
+                    background: white;
+                    border-radius: 10px;
+                    box-shadow: 1px 10px 22px gray;
+                }
+            </style>
+    </section>
+
+
+</body>
+
+</html>

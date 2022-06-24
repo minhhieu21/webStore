@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LOGIN TO SYSTEM</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Link icon -->
+    <link rel="shortcut icon" href="/images/icon1.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- link css -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 form-container">
+                <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
+                    <div class="logo">
+                        <img src="/images/logo.png" class="img-fluid w-50">
+                    </div>
+                    <div class="heading mb-3">
+                        <h4>LOGIN INTO YOUR ACCOUNT</h4>
+                    </div>
+
+                    <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                        <i>[[${message}]]</i>
+                    </div>
+
+                    <form th:action="@{/slogin}" method="post" th:object="${customer}">
+                        <div class="form-input ">
+                            <span><i class="fa fa-user "></i></span>
+                            <input type="text" th:field="*{email}" name="email" id="email" placeholder="Email" />
+                            <!-- <small th:if="${#fields.hasErrors( 'email')} " id="accountHelpId " class="form-text text-muted ">Email is required</small> -->
+                        </div>
+                        <div class="form-input ">
+                            <span><i class="fa fa-lock "></i></span>
+                            <input type="password" th:field="*{password}" name="password" id="password" placeholder="Password" />
+                            <!-- <small th:if="${#fields.hasErrors( 'password')} " id="accountHelpId " class="form-text text-muted ">Password is required</small> -->
+                        </div>
+                        <div class="row mb-3 ">
+                            <div class="col-6 d-flex ">
+                                <div class="custom-control custom-checkbox ">
+                                    <input type="checkbox " class="custom-control-input " id="cb1 " th:field="*{rememberMe} " value="false ">
+                                    <label class="custom-control-label text-white " for="cb1 ">Remember me</label>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right ">
+                                <a href="forgot.html " class="forget-link ">Forgot password</a>
+                            </div>
+                        </div>
+                        <div class="text-left text-center mb-3 ">
+                            <button type="submit" class="btn">Login</button>
+                        </div>
+                        <div class="text-white mb-3 ">or login with</div>
+                        <div class="row mb-3 ">
+                            <div class="col-4 ">
+                                <a href=" " class="btn btn-block btn-social btn-facebook ">
+                                    <i class="fa fa-facebook "></i>
+                                </a>
+                            </div>
+                            <div class="col-4 ">
+                                <a href=" " class="btn btn-block btn-social btn-google ">
+                                    <i class="fa fa-google "></i>
+                                </a>
+                            </div>
+                            <div class="col-4 ">
+                                <a href=" " class="btn btn-block btn-social btn-twitter ">
+                                    <i class="fa fa-twitter "></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-white ">Don't have an account?
+                            <a th:href="@{/add}" class="register-link ">Register here</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 d-none d-md-block image-container "></div>
+
+        </div>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
+</body>
+
+</html>

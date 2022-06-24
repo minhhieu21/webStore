@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+    <section class="form mt-3 my-4" layout:fragment="content">
+        <div class="head pb-5 ">
+            <div class="container py-5 ">
+                <div class="card">
+                    <div class="col">
+                        <div class="col mt-2">
+                            <div class="tab-content pb-5 pt-3">
+                                <form action="/admin/products/saveOrUpdate" method="post" enctype="multipart/form-data" th:object="${product}">
+                                    <h2 th:text="${product.isEdit? 'EDIT PRODUCT' : 'ADD NEW PRODUCT'}" class="font-weight-light text-center py-2">ADD PRODUCTS</h2>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+
+                                                <input type="hidden" th:field="*{isEdit}">
+
+                                                <div class="form-group" th:if="${product.isEdit}">
+                                                    <label for="productId">Product ID</label>
+                                                    <input readonly type="text" class="form-control" name="productId" id="productId" value="" aria-describedby="productHelpId" placeholder="Product ID" th:field="*{productId}">
+                                                    <small id="productHelpId" class="form-text text-muted">Category ID is required</small>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="name">Name</label>
+                                                    <input type="text" class="form-control" name="name" id="name" value="" aria-describedby="nameHeplId" placeholder="Name product" th:field="*{name}">
+                                                    <small id="nameHeplId" class="form-text text-muted">Name product required !</small>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Quatity">Quatity</label>
+                                                    <input type="number" class="form-control" name="quatity" id="quatity" value="" aria-describedby="quatityHeplId" placeholder="Quatity product" th:field="*{quatity}">
+                                                </div>
+
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-text">Unit Price</span>
+                                                            <input type="number" name="unitPrice" id="unitPrice" class="form-control" placeholder="Unit Price" th:field="*{unitPrice}">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="input-group form-group">
+                                                            <span class="input-group-text">Discount</span>
+                                                            <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount" th:field="*{discount}">
+                                                            <span class="input-group-text">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="categoryId">Category</label>
+                                                            <select class="form-control" name="categoryId" id="categoryId" th:field="*{categoryId}">
+                                                                  <option th:each="item : ${categories}" 
+                                                                  th:value="${item.categoryId}" 
+                                                                  th:text="${item.name}" 
+                                                                  th:selected="${item.categoryId == product.categoryId}">
+                                                                  Category Name</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="status">Status</label>
+                                                            <select class="form-control" name="status" id="status" th:field="*{status}">
+                                                                  <option value="0">Out of Stock</option>
+                                                                  <option value="1">On Sale</option>
+                                                                  <option value="2">Featured</option>
+                                                                  <option value="3">Bestseller</option>
+                                                                  <option value="4">Out of Order</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="col-3 offset-2">
+                                                <script>
+                                                    function chooseFile(fileInput) {
+                                                        if (fileInput.files && fileInput.files[0]) {
+
+                                                            var reader = new FileReader();
+
+                                                            reader.onload = function(e) {
+                                                                $('#image').attr('src', e.target.result);
+                                                            }
+
+                                                            reader.readAsDataURL(fileInput.files[0]);
+                                                        }
+                                                    }
+                                                </script>
+                                                <img id="image" th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" alt="" class="img-fluid w-auto">
+
+                                                <div class="form-group">
+                                                    <label for="productImage">Image File</label>
+                                                    <input name="imageFile" onchange="chooseFile(this)" type="file" class="form-control-file" id="productImage" aria-describedby="productImage" placeholder="Product Image">
+                                                    <small id="productImage" class="form-text text-muted">Product image is required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" id="description" cols="30" rows="2" class="form-control" th:field="*{description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <a th:href="@{/admin/products/add}" class="btn btn-primary text-white">New</a>
+                                        <button th:text="${product.isEdit? 'Update' : 'Save'}" class="btn btn-info">Save</button>
+                                        <a th:if="${product.isEdit}" th:href="@{'/admin/products/delete/' + ${product.productId}}" class="btn btn-danger float-right text-white">Delete</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            
+            .head {
+                background-image: url('/images/bg2.jpg');
+                background-size: 100% 100%;
+                border-radius: 5px;
+            }
+            
+            .row1 {
+                background: white;
+                border-radius: 10px;
+                box-shadow: 1px 10px 22px gray;
+            }
+        </style>
+    </section>
+
+
+</body>
+
+</html>
