@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.poly.domain.Product;
+import edu.poly.global.GlobalData;
 import edu.poly.model.AccountDto;
 import edu.poly.service.ProductService;
 import edu.poly.service.StorageService;
@@ -55,4 +56,11 @@ public class HomeController {
 				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
 		
 	}
+	
+	@GetMapping("/shop/viewproduct/{id}")
+    public String viewProduct(@PathVariable long id, Model model){
+        model.addAttribute("cartCount", GlobalData.cart.size());
+        model.addAttribute("product", productService.getProductById(id).get());
+        return "viewProduct";
+    } //view product Details
 }
