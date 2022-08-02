@@ -55,14 +55,14 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 	
-//	@ModelAttribute("categories")
-//	public List<CategoryDto> getCategories(){
-//		return categoryService.findAll().stream().map(item->{
-//			CategoryDto dto = new CategoryDto();
-//			BeanUtils.copyProperties(item, dto);
-//			return dto;
-//		}).toList();
-//	}
+	@ModelAttribute("categories")
+	public List<CategoryDto> getCategories(){
+		return categoryService.findAll().stream().map(item->{
+			CategoryDto dto = new CategoryDto();
+			BeanUtils.copyProperties(item, dto);
+			return dto;
+		}).toList();
+	}
 	
 	@GetMapping("add")
 	public String add(Model model) {

@@ -103,7 +103,7 @@
                     <div class="col-md-3" th:each="product : ${products}">
                         <div class="product-wrapper mb-45 text-center">
                             <div class="product-img">
-                                <a href="#" data-abc="true"> <img th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" class="img-fluid w-auto" alt=""> </a>
+                                <a th:href="@{'/site/viewproduct/' + ${product.productId}}" data-abc="true"> <img th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" class="img-fluid w-auto" alt=""> </a>
                                 <div class="product-action">
                                     <div class="product-action-style">
                                         <a href="#"> <i class="fa fa-plus"></i> </a>
