@@ -21,6 +21,8 @@ public interface ProductService {
 	Product getReferenceById(Long id);
 
 	Product getById(Long id);
+	
+	Optional<Product> getProductById(long id);
 
 	void deleteAll();
 
