@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import edu.poly.config.StorageProperties;
 import edu.poly.service.StorageService;
 
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableConfigurationProperties(StorageProperties.class)
 public class AssigmentsApplication {
 
