@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+	<section layout:fragment="content">
+		<div class="container">
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col-sm-5 d-flex justify-content-center">
+						<img class="mt-5" height="300px" width="300px" src=""
+							th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" alt="">
+					</div>
+					<div class="col-sm-7 mt-5">
+						<h2 th:text="${product.name}"></h2>
+						<p th:text="${product.description}"></p>
+						<a href="" th:href="@{/addToCart/{id}(id = ${product.id})}"
+							class="btn btn-primary">Add to cart</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+
+</body>
+
+</html>
+
+<body>
