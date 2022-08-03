@@ -61,7 +61,7 @@ public class ProductController {
 			CategoryDto dto = new CategoryDto();
 			BeanUtils.copyProperties(item, dto);
 			return dto;
-		}).toList();
+		}).collect(Collectors.toList());
 	}
 	
 	@GetMapping("add")
