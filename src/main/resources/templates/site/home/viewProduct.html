@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Link icon -->
+    <!-- Link icon -->
     <link rel="shortcut icon" href="/images/icon1.png" type="image/x-icon">
 
     <!-- link fonawesome -->
@@ -46,8 +46,8 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item float-right">
-                            <a class="nav-link text-light" th:href="@{/cart}" ><span class="fa fa-shopping-cart"></span>
-                                <span class="text">Cart</span></a>
+                            <a class="nav-link text-light" th:href="@{/cart}"><span class="fa fa-shopping-cart"></span>
+                                <span th:text="${cartCount}" class="text">0</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="#"><span class="fa fa-user-o"></span>
@@ -81,7 +81,7 @@
                                     <p th:text="${product.name}" class="m-0 p-0"></p>
                                 </div>
                                 <div class="col-lg-12">
-                                    <p th:text="${product.unitPrice + ' VNĐ' }" class="m-0 p-0 price-pro">$30</p>
+                                    <p th:text="${product.unitPrice + ' $' }" class="m-0 p-0 price-pro"></p>
                                     <hr class="p-0 m-0">
                                 </div>
                                 <div class="col-lg-12 pt-2">

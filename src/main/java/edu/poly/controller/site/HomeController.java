@@ -49,6 +49,8 @@ public class HomeController {
 		List<Product> list =  productService.findAll();
 		
 		model.addAttribute("products", list);
+		model.addAttribute("cartCount", GlobalData.cart.size());
+        model.addAttribute("cart", GlobalData.cart);
 		
 		return "site/home/demo";
 	}
@@ -85,6 +87,8 @@ public class HomeController {
 			
 			
 			model.addAttribute("product", dto);
+			model.addAttribute("cartCount", GlobalData.cart.size());
+	        model.addAttribute("cart", GlobalData.cart);
 			
 			return new ModelAndView("site/home/viewProduct" ,model);
 		}

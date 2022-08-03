@@ -108,7 +108,7 @@
                                     <div class="product-action-style">
                                         <a href="#"> <i class="fa fa-plus"></i> </a>
                                         <a href="#"> <i class="fa fa-heart"></i> </a>
-                                        <a href="#"> <i class="fa fa-shopping-cart"></i> </a>
+                                        <a th:href="@{/addToCart/{id}(id = ${product.productId})}"> <i class="fa fa-shopping-cart"></i> </a>
                                     </div>
                                 </div>
                             </div>

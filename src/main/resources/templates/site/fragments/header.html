@@ -31,9 +31,10 @@
                     </div>
 
                     <ul class="navbar-nav ml-auto">
+
                         <li class="nav-item float-right">
                             <a class="nav-link text-light" th:href="@{/cart}"><span class="fa fa-shopping-cart"></span>
-                                <span class="text">Cart</span></a>
+                                <span th:text="${cartCount}" class="text">0</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="#"><span class="fa fa-user-o"></span>
