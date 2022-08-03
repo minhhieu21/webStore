@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Link icon -->
+    <!-- Link icon -->
     <link rel="shortcut icon" href="/images/icon1.png" type="image/x-icon">
-    
+
     <!-- link fonawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -83,21 +83,17 @@
 
                                 <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
 
-                                <div class="row mb-4" th:each="item, iStat : ${cart}">
+                                <div class="row mb-4" th:each="product, iStat : ${cart}">
                                     <div class="col-md-5 col-lg-3 col-xl-3">
                                         <div class="mb-3 mb-md-0">
-                                            <img class="img-fluid w-100" th:src="@{${'/productImages/' + item.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-
+                                            <img class="img-fluid w-100" th:src="${'/admin/products/images/' + product.image}" alt="Sample">
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-lg-9 col-xl-9">
                                         <div>
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 th:text="${item.name}">Blue denim shirt</h5>
-                                                    <p class="mb-3 text-uppercase small">Weight: <span th:text="${item.weight}"></span> grams</p>
-                                                    <!--                                                <p class="mb-2 text-uppercase small">Category: <span th:text="${item.category.name}"></span></p>-->
-
+                                                    <h5 th:text="${product.name}"></h5>
                                                 </div>
 
                                             </div>
@@ -107,7 +103,7 @@
                                                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
 
                                                 </div>
-                                                <p class="mb-0"><span><strong>₹<span th:text="${item.price}"></span></strong>
+                                                <p class="mb-0"><span><strong>₹<span th:text="${product.unitPrice}"></span></strong>
                                                     </span>
                                                 </p>
                                             </div>
