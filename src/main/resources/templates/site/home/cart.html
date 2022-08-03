@@ -10,6 +10,9 @@
     <!-- link fonawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
+
     <link rel="stylesheet" th:href="@{/css/viewProduct.css}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -43,7 +46,7 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item float-right">
-                            <a class="nav-link text-light" th:href="@{/cart}" ><span class="fa fa-shopping-cart"></span>
+                            <a class="nav-link text-light" th:href="@{/cart}"><span class="fa fa-shopping-cart"></span>
                                 <span class="text">Cart</span></a>
                         </li>
                         <li class="nav-item">
@@ -62,53 +65,129 @@
     <section>
 
         <div class="container">
-            <div class="col-lg-8 mt-4 mb-3 border p-3 main-section bg-white offset-2">
-                <div class="row hedding m-0 pl-3 pt-0 pb-3">
-                    CHI TIẾT SẢN PHẨM
-                </div>
-                <div class="row m-0">
-                    <div class="col-lg-4 left-side-product-box pb-3">
-                        <img th:src="${product.image != null ? '/admin/products/images/' + product.image : '/images/bg2.jpg'}" class="border p-3">
-                    </div>
+            <!--Section: Block Content-->
+            <section class="mt-5 mb-4">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
                     <div class="col-lg-8">
-                        <div class="right-side-pro-detail border p-3 m-0">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <span>Who What Wear</span>
-                                    <p th:text="${product.name}" class="m-0 p-0"></p>
-                                </div>
-                                <div class="col-lg-12">
-                                    <p th:text="${product.unitPrice + ' VNĐ' }" class="m-0 p-0 price-pro">$30</p>
-                                    <hr class="p-0 m-0">
-                                </div>
-                                <div class="col-lg-12 pt-2">
-                                    <h5>Product Detail</h5>
-                                    <span th:text="${product.description}"></span>
-                                    <hr class="m-0 pt-2 mt-2">
-                                </div>
-                                <div class="col-lg-12">
-                                    <p class="tag-section"><strong>Tag : </strong><a href="">Woman</a><a href="">,Man</a></p>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h6>Quantity :</h6>
-                                    <input type="number" class="form-control text-center w-100" value="1">
-                                </div>
-                                <div class="col-lg-12 mt-3">
-                                    <div class="row">
-                                        <div class="col-lg-6 pb-2">
-                                            <a th:href="@{/addToCart/{id}(id = ${product.productId})}" class="btn btn-danger w-100">Add To Cart</a>
+
+                        <!-- Card -->
+                        <div class="card wish-list mb-4">
+                            <div class="card-body">
+
+                                <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
+
+                                <div class="row mb-4" th:each="item, iStat : ${cart}">
+                                    <div class="col-md-5 col-lg-3 col-xl-3">
+                                        <div class="mb-3 mb-md-0">
+                                            <img class="img-fluid w-100" th:src="@{${'/productImages/' + item.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+
                                         </div>
-                                        <div class="col-lg-6">
-                                            <a th:href="@{/site/home}" class="btn btn-success w-100">Shop Now</a>
+                                    </div>
+                                    <div class="col-md-7 col-lg-9 col-xl-9">
+                                        <div>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <h5 th:text="${item.name}">Blue denim shirt</h5>
+                                                    <p class="mb-3 text-uppercase small">Weight: <span th:text="${item.weight}"></span> grams</p>
+                                                    <!--                                                <p class="mb-2 text-uppercase small">Category: <span th:text="${item.category.name}"></span></p>-->
+
+                                                </div>
+
+                                            </div>
+                                            <div class="mt-5 d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button" class="card-link-secondary small text-uppercase mr-3"><i
+                                                        class="fas fa-trash-alt mr-1"></i> Remove item </a>
+
+                                                </div>
+                                                <p class="mb-0"><span><strong>₹<span th:text="${item.price}"></span></strong>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-4">
+
+                                <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding items to your cart does not mean booking them.</p>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-4">
+
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+
+                                <h5 class="mb-3">The total amount </h5>
+
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        Amount Payable
+                                        <span>₹<span th:text="${total}"></span></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        Shipping
+                                        <span>Gratis</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                        <div>
+                                            <strong>The total amount of</strong>
+                                            <strong>
+                                            <p class="mb-0">(including VAT)</p>
+                                        </strong>
+                                        </div>
+                                        <span><strong>₹<span th:text="${total}"></span></strong>
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">go to
+                                checkout</a>
+
+                            </div>
+                        </div>
+                        <!-- Card -->
+
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+
+                                <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Add a discount code (optional)
+                                <span><i class="fas fa-chevron-down pt-1"></i></span>
+                            </a>
+
+                                <div class="collapse" id="collapseExample">
+                                    <div class="mt-3">
+                                        <div class="md-form md-outline mb-0">
+                                            <input type="text" id="discount-code" class="form-control font-weight-light" placeholder="Enter discount code">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <!-- Card -->
 
-            </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </section>
         </div>
 
     </section>

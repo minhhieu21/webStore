@@ -20,7 +20,7 @@ public class CartController {
         model.addAttribute("cartCount", GlobalData.cart.size());
         model.addAttribute("total", GlobalData.cart.stream().mapToDouble(Product::getUnitPrice).sum());
         model.addAttribute("cart", GlobalData.cart);
-        return "cart";
+        return "site/home/cart";
     }//page cart
 
     @GetMapping("/addToCart/{id}")
