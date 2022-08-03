@@ -1,24 +1,21 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
-    <title>INFINITY SHOP</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Link icon -->
     <link rel="shortcut icon" href="/images/icon1.png" type="image/x-icon">
 
-    <!-- link fonawesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
+    <link rel="stylesheet" th:href="@{/css/card.css}">
 
-    <link rel="stylesheet" th:href="@{/css/viewProduct.css}">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Card - INFINITY SHOP</title>
 </head>
 
 
@@ -63,11 +60,9 @@
 
 
     </header>
-
-
-    <section>
-
+    <main>
         <div class="container">
+
             <!--Section: Block Content-->
             <section class="mt-5 mb-4">
 
@@ -83,17 +78,20 @@
 
                                 <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
 
-                                <div class="row mb-4" th:each="product, iStat : ${cart}">
+                                <div class="row mb-4" th:each="item, iStat : ${cart}">
                                     <div class="col-md-5 col-lg-3 col-xl-3">
                                         <div class="mb-3 mb-md-0">
-                                            <img class="img-fluid w-100" th:src="${'/admin/products/images/' + product.image}" alt="Sample">
+                                            <img class="img-fluid w-100" th:src="${'/admin/products/images/' + item.image}" alt="Sample">
+
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-lg-9 col-xl-9">
                                         <div>
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h5 th:text="${product.name}"></h5>
+                                                    <h5 th:text="${item.name}"></h5>
+                                                    <p class="mb-2 text-uppercase small">Loại hàng: <span th:text="${item.category.name}"></span></p>
+                                                    <p class="mb-2 text-uppercase small">Mô tả: <span th:text="${item.description}"></span></p>
                                                 </div>
 
                                             </div>
@@ -103,7 +101,7 @@
                                                         class="fas fa-trash-alt mr-1"></i> Remove item </a>
 
                                                 </div>
-                                                <p class="mb-0"><span><strong>₹<span th:text="${product.unitPrice}"></span></strong>
+                                                <p class="mb-0"><span><strong>₹<span th:text="${item.unitPrice}"></span></strong>
                                                     </span>
                                                 </p>
                                             </div>
@@ -153,7 +151,7 @@
                                     </li>
                                 </ul>
 
-                                <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">go to
+                                <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">Go to
                                 checkout</a>
 
                             </div>
@@ -187,9 +185,12 @@
                 <!--Grid row-->
 
             </section>
-        </div>
+            <!--Section: Block Content-->
 
-    </section>
+        </div>
+    </main>
+    <!--Main layout-->
+
 
     <footer class="footer-14398">
 
@@ -265,12 +266,11 @@
 
 
 
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
