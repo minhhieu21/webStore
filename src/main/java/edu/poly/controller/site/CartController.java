@@ -40,6 +40,6 @@ public class CartController {
         model.addAttribute("cartCount", GlobalData.cart.size());
         model.addAttribute("total", GlobalData.cart.stream().mapToDouble(Product::getUnitPrice).sum());
         //model.addAttribute("cart", GlobalData.cart);
-        return "checkout";
+        return "site/home/checkout";
     } // checkout totalPrice
 }
